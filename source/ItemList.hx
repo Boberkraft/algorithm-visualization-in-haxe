@@ -34,11 +34,15 @@ class ItemList extends FlxTypedSpriteGroup<ItemImpl>
             add(item);
             
             _ItemList[i] = item;
-            item.x = ItemImpl.ITEM_WIDTH * i * 2;
+            item.x = calculateX(i);
         }
 
     }
 
+    private function calculateX(index:Int):Int
+    {
+        return Std.int(ItemImpl.ITEM_WIDTH * index * 2 + this.x);
+    }
     
     public function swapItemsByIndex(a:Int, b:Int)
     {
@@ -49,7 +53,11 @@ class ItemList extends FlxTypedSpriteGroup<ItemImpl>
         _ItemList[a] = _ItemList[b];
         _ItemList[b] = temp;
         //return swapItemsByItem(itemA, itemB);
-
+    }
+    public function moveItemToIndex(item:Item, index:Int, time:Float):ActionType
+    {
+        var newX = calculateX(index);
+        return T_SINGLE(FlxTween.tween(item, {x:newX}, time, {ease:FlxEase.smootherStepInOut}));
     }
     public function swapItemsByItem(itemA:Item, itemB:Item):ActionType
     {
@@ -66,9 +74,9 @@ class ItemList extends FlxTypedSpriteGroup<ItemImpl>
         //throw 'error';
         //return setColorByItem(item);
     //}
-    public function setColorByItem(item:Item, color:FlxColor):ActionType
+    public function setColorForItem(item:Item,  color:FlxColor, time:Float):ActionType
     {
-        return T_SINGLE(FlxTween.color(item, 0.1, item.color, color));
+        return T_SINGLE(FlxTween.color(item, time, item.color, color));
     }
     
     public inline function get_lenght()

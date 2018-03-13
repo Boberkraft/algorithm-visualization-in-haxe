@@ -47,7 +47,6 @@ class CodeMenu extends FlxSpriteGroup
     
     public function generateCodeMenu()
     {
-        trace(Status.algorithm);
         var code:Array<String> = switch (Status.algorithm) 
         {
             case AlgorithmType.BubbleSort:
