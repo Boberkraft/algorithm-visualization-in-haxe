@@ -50,16 +50,49 @@ class CodeMenu extends FlxSpriteGroup
         var code:Array<String> = switch (Status.algorithm) 
         {
             case AlgorithmType.BubbleSort:
-                ['Dla każdego elementu:',
-                '    od 0 do (ostatniego nieposortowanego elementu - 1):',
-                '        jeżeli lewyElement > prawyElement:',
-                '            zamień(lewyElement, prawyElement)'];
+                ['Dla każdego elementu:', // 0
+                '    od 0 do (ostatniego nieposortowanego elementu - 1):', // 1
+                '        jeżeli lewyElement > prawyElement:', // 2
+                '            zamień(lewyElement, prawyElement)']; //3
             case AlgorithmType.InsertionSort:
-                ['Dla każdego elementu:',
-                '    do póki lewyElement < element:',
-                '        zamień(LewyElement, Element)',
-                '        element = lewyElement'];
-                
+                ['Dla każdego elementu:', // 0
+                '    do póki lewyElement < element:', // 1
+                '        zamień(LewyElement, Element)', // 2
+                '        element = lewyElement']; // 3
+            case AlgorithmType.MergeSort:
+                ['Rozdziel(Tablica):', // 0
+                '    Jeżeli Tablica ma <= 1 element:', // 1
+                '        zwróć Tablica', // 2
+                '    W innym wypadku:', // 3
+                '        RodzielTabliceWPół()', // 4
+                '        Rodziel(LewaPołowa)', // 5
+                '        Rodziel(PrawaPołowa)', // 6
+                '        ScalonaTablica = Scal(LewaPołowa, PrawaPołowa)', // 7
+                '        zwróć ScalonaTablica', // 8
+                '', // 9
+                'Scal(LewaPołowa, PrawaPołowa):', // 10
+                '  Dla każego elementu:', // 11
+                '    jeżeli Początek(LewaPołowa) < Początek(PrawaPołowa):',  // 12
+                '        nowaTablica.push(Początek(PrawaPołowa))', // 13
+                '    w innym wypadku:', // 14
+                '        nowaTablica.push(Początek(LewaPołowa))']; // 15
+            case AlgorithmType.QuickSort:
+                ['QuickSort(Tablica):', // 0
+                '    jeżeli Tablica ma ponad 1 element:', //1
+                '        Odniesienie = Rozgródź(Tablica)', //2
+                '        RozdzielWPunkcie(Tablica, Odniesienie)', //3
+                '        QuickSort(LewaPołowa)', //4
+                '        QuickSort(PrawaPołowa)', //5
+                '', //6
+                'Rozgródź(Tablica):', //7
+                '    Odniesienie = Koniec(Tablica)', //8
+                '    DoZamiany = Początek(Tablica)', //9
+                '    Dla każdego elementu:', //10
+                '        Jeżeli Element < Odniesienie:', //11
+                '            Zamień(Element, Element)', //12
+                '            DoZamiany = Nastepny(DoZamiany)', //13
+                '    Zamień(DoZamiany, Odniesienie)', //14
+                '    zwróć Odniesienie'];  //15
         }
         //trace(code);
         init(code);
@@ -72,7 +105,6 @@ class CodeMenu extends FlxSpriteGroup
         
         textsBackground[line].color = Status.pickCodeColor;
         texts[line].color = Color.Black;
-      
         
         highlightedLine = line;
     }

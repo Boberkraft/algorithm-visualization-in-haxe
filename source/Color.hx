@@ -15,4 +15,5 @@ class Color
     public static var PinkCrimson = FlxColor.fromInt(0xFFc93756);
     public static var GreenJungle = FlxColor.fromInt(0xFF26c281);
     public static var Turquoise = FlxColor.fromInt(0xff36d7b7);
+    public static var Purple = FlxColor.fromInt(0xff875F9A);
 }

@@ -25,4 +25,24 @@ abstract Item(ItemImpl) from ItemImpl to ItemImpl
     {
         return a.value < b.value;
     }
+    @:op(A <= B)
+    public static inline function eq(a:Item, b:Item):Bool
+    {
+        return a.value <= b.value;
+    }
+    //@:op(A >= B)
+    //public static inline function eq(a:Item, b:Item):Bool
+    //{
+        //return a.value >= b.value;
+    //}
+    //@:op(A == B)
+    //public static inline function eq(a:Item, b:Item):Bool
+    //{
+        //return a.value == b.value;
+    //}
+    //@:op(A != B)
+    //public static inline function eq(a:Item, b:Item):Bool
+    //{
+        //return a.value != b.value;
+    //}
 }

@@ -6,7 +6,7 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
 
-@:expose
+
 class PlayState extends FlxState
 {
 
@@ -34,16 +34,19 @@ class PlayState extends FlxState
         
         add(new GlobalTimer());
         //list of items
-        itemList = new ItemList(14);
-        itemList.x = itemList.width/16;
-        itemList.y = FlxG.height / 2 -itemList.height/2;
+        itemList = new ItemList(16);
+        itemList.x = Std.int(itemList.width/16);
+        itemList.y = FlxG.height / 2 - itemList.height / 2;
+        
+        if (Status.algorithm == AlgorithmType.MergeSort)
+            itemList.y /= 2; 
         add(itemList);
         
         codeMenu = new CodeMenu();
         codeMenu.generateCodeMenu();
         add(codeMenu);
         codeMenu.y = FlxG.height / 2 - codeMenu.height / 2;
-        codeMenu.x = itemList.x + itemList.width + itemList.width/16;
+        codeMenu.x = Std.int(itemList.x + itemList.width + itemList.width/16);
         
         var actions = AlgorithmQueue.generateOperations(itemList, codeMenu);
         add(actions);

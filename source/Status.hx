@@ -15,6 +15,7 @@ class Status
     //colors
     public static var pickColor:FlxColor;
     public static var pickColorSecondary:FlxColor;
+    public static var pickColorTertiary:FlxColor;
     public static var idleColor:FlxColor;
     
     public static var doneColor:FlxColor;
@@ -30,12 +31,14 @@ class Status
         Status.algorithm = alg;
         Status.pickColor = Color.Turquoise;
         Status.pickColorSecondary = Color.GreenJungle;
+        Status.pickColorTertiary= Color.Purple;
         Status.idleColor = Color.Black;
         Status.backgroundColor = Color.PinkCrimson;
         Status.doneColor = Color.White;
 
         Status.idleCodeColor = Status.backgroundColor;
         Status.pickCodeColor = Status.pickColor;
+        ItemImpl.ITEM_WIDTH = 16;
         switch (alg)
         {
             case BubbleSort:
@@ -45,6 +48,9 @@ class Status
                 //Status.backgroundColor = Color.PinkCrimson;
                 //Status.doneColor = Color.PinkRed;                
             case InsertionSort:
+            case MergeSort:
+                ItemImpl.ITEM_WIDTH = 16;
+            case QuickSort:
         }
     }
     
