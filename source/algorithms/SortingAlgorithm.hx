@@ -52,6 +52,10 @@ class SortingAlgorithm
         queue = new ActionQueue();
     } // new
     
+    public function preInit()
+    {
+        Status.howManyItems = 16;
+    }
     
     public function generateActions():ActionQueue
     {
@@ -80,10 +84,13 @@ class SortingAlgorithm
             trace(code);
         }
     }
+    
+
+    
     // to be overriden by subclasses
     private function _generateActions()
     { throw 'Must be overriden by subclass'; }
-
+   
     // to be overriden by subclasses
     // initalizes stuff like a overriden costructor
 

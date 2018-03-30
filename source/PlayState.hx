@@ -25,9 +25,11 @@ class PlayState extends FlxState
         super.create();
         FlxG.mouse.unload();
         FlxG.mouse.useSystemCursor = true;
-           
         
-        //
+        // pre initializes algorithm.
+        var algClass = AlgorithmFactory.getAlgorithmClass(Status.activeAlgorithm);
+        Type.createInstance(algClass, []).preInit();
+        
         // the background of the main scene with blocks
         background = new Background();
         add(background);
@@ -37,15 +39,18 @@ class PlayState extends FlxState
         
         //list of items
         if (Status.preloadedItems == null) {
-            // load standar random items
-            Status.preloadedItems = DrawArea.generateShuffledItems(16);
+            // load standard random items
+            trace('generating random set of items');
+            Status.preloadedItems = DrawArea.generateShuffledItems(Status.howManyItems);
         }
+        trace('loaded items are:');
+        trace(Status.preloadedItems);
         drawArea = new DrawArea(Status.preloadedItems);
-        Status.preloadedItems = null;
+        trace([for (item in drawArea.getItems()) item.value]);
         drawArea.x = Std.int(drawArea.width/16);
         drawArea.y = FlxG.height / 2 - drawArea.height / 2;
         
-        if ( Status.activeAlgorithm == 'algorithms.MergeSort') {
+        if ( Status.activeAlgorithm == 'MergeSort') {
             drawArea.y /= 2; 
         }
         add(drawArea);
@@ -59,7 +64,7 @@ class PlayState extends FlxState
         
         //var algo = new BubbleSort(drawArea, codeMenu);
         //var algo = new InsertionSort(drawArea, codeMenu);
-        var algClass = AlgorithmFactory.getAlgorithmClass(Status.activeAlgorithm);
+        
         var algo = Type.createInstance(algClass, [drawArea, codeMenu]);
         
         codeMenu.y = FlxG.height / 2 - codeMenu.height / 2;

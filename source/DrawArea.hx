@@ -25,7 +25,7 @@ class DrawArea extends FlxSpriteGroup
     public static function generateShuffledItems(items:Int):Array<Int>
     {
         var random = new FlxRandom();
-        var shuffled_items = [for (i in 0...items) i];
+        var shuffled_items = [for (i in 0...items) i + 1];
         random.shuffle(shuffled_items);
         return shuffled_items;        
     }
@@ -41,20 +41,20 @@ class DrawArea extends FlxSpriteGroup
         
         data = items;
 
-
+        trace(items);
         for (i in 0...items.length)
         {
-            var val = items.length - items[i];
+            var val = items[i];
             var height = Std.int(val / items.length * ItemImpl.MAX_HEIGHT);
             var item = new ItemImpl(height, val);
             item.setColorIdle();
             
             add(item);
             
-            itemList[i] = item;
+            itemList.push(item);
             item.x = calculateX(i);            
         }
-       
+        trace([for (item in itemList) item.value]);
         bracketManager.y = height;
         
         add(bracketManager);
