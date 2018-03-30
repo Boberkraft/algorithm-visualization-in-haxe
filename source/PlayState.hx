@@ -1,5 +1,10 @@
 package;
 
+import algorithms.BubbleSort;
+import algorithms.InsertionSort;
+import algorithms.MergeSort;
+import algorithms.SortingAlgorithm;
+import algorithms.Template;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
@@ -10,15 +15,11 @@ import flixel.tweens.FlxTween;
 class PlayState extends FlxState
 {
 
-    private var background:Background;
-    private var itemList:ItemList;
+    var background:Background;
+    var drawArea:DrawArea;
+    var actionQueue:ActionQueue; // we need to check if all acions are done.
+    var codeMenu:CodeMenu;
     
-    private var swapStatus:FlxTween = null;
-    private var pickedItem:ItemImpl;
-    
-    private var algorithmQueue:AlgorithmQueue;
-    
-    private var codeMenu:CodeMenu;
     override public function create():Void
     {
         super.create();
@@ -33,31 +34,47 @@ class PlayState extends FlxState
         
         
         add(new GlobalTimer());
-        //list of items
-        itemList = new ItemList(16);
-        itemList.x = Std.int(itemList.width/16);
-        itemList.y = FlxG.height / 2 - itemList.height / 2;
         
-        if (Status.algorithm == AlgorithmType.MergeSort)
-            itemList.y /= 2; 
-        add(itemList);
+        //list of items
+        if (Status.preloadedItems == null) {
+            // load standar random items
+            Status.preloadedItems = DrawArea.generateShuffledItems(16);
+        }
+        drawArea = new DrawArea(Status.preloadedItems);
+        Status.preloadedItems = null;
+        drawArea.x = Std.int(drawArea.width/16);
+        drawArea.y = FlxG.height / 2 - drawArea.height / 2;
+        
+        if ( Status.activeAlgorithm == 'algorithms.MergeSort') {
+            drawArea.y /= 2; 
+        }
+        add(drawArea);
         
         codeMenu = new CodeMenu();
-        codeMenu.generateCodeMenu();
+
         add(codeMenu);
-        codeMenu.y = FlxG.height / 2 - codeMenu.height / 2;
-        codeMenu.x = Std.int(itemList.x + itemList.width + itemList.width/16);
+
         
-        var actions = AlgorithmQueue.generateOperations(itemList, codeMenu);
-        add(actions);
-        actions.start();
+        //var sortingAlgo = Status.activeAlgorithm();
+        
+        //var algo = new BubbleSort(drawArea, codeMenu);
+        //var algo = new InsertionSort(drawArea, codeMenu);
+        var algClass = AlgorithmFactory.getAlgorithmClass(Status.activeAlgorithm);
+        var algo = Type.createInstance(algClass, [drawArea, codeMenu]);
+        
+        codeMenu.y = FlxG.height / 2 - codeMenu.height / 2;
+        codeMenu.x = Std.int(drawArea.x + drawArea.width + drawArea.width / 16);
+        
+        var actionQueue:ActionQueue = algo.generateActions();
+        add(actionQueue); // 
+        actionQueue.start();
     }
     
     
     //#if js
-    public static function loadAlgorithm(type:AlgorithmType)
+    public static function loadAlgorithm(type:Dynamic)
     {
-        Status.setAlgorithm(type);
+        Status.activeAlgorithm = type;
         FlxG.switchState(new PlayState());
     }
     //#end
@@ -65,7 +82,5 @@ class PlayState extends FlxState
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
-        
-
     }
 }

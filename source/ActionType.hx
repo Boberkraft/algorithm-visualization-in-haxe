@@ -1,6 +1,5 @@
 package;
-import flixel.tweens.FlxTween;
-import haxe.macro.Expr;
+
 /**
  * @author Andrzej
  */

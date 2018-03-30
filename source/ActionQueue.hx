@@ -85,6 +85,11 @@ class ActionQueue extends FlxObject
                 return false;
         }
     }
+    
+    public static function wait(time:Float):Wait
+    {
+        return new Wait(time);
+    }
 
 }
 

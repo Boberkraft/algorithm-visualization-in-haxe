@@ -9,7 +9,7 @@ import flixel.util.FlxColor;
  */
 class ItemImpl extends FlxSpriteGroup
 {
-    public static var ITEM_WIDTH = 0; // changed by Status
+    public static var ITEM_WIDTH = 16; // changed by Status
     // the height is maped value of the block.
     // so val 0 -> 0
     // and val 100 -> MAX_HEIGHT
@@ -24,9 +24,13 @@ class ItemImpl extends FlxSpriteGroup
         super(x, y);
         value = val;
         itemHeight = height;
+        
         graph = new FlxSprite(0, MAX_HEIGHT - itemHeight);
-        graph.makeGraphic(ITEM_WIDTH, itemHeight, Color.White, true);
+        
+        graph.makeGraphic(ITEM_WIDTH, itemHeight);
+        
         add(graph);
+        
     }
     
     public function setColor(color:FlxColor)

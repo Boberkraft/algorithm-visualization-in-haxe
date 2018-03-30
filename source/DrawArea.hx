@@ -13,41 +13,52 @@ import ActionType;
  * ...
  * @author Andrzej
  */
-class ItemList extends FlxSpriteGroup
+class DrawArea extends FlxSpriteGroup
 {
-    public var _ItemList:Array<ItemImpl>;
+    public var itemList:Array<ItemImpl>;
+    public var bracketManager:BracketManager;
+    public var lineManager:LineManager;
+    
     public var data:Array<Int>;
     public var lenght(get, null):Int;
-    private var brackets:FlxTypedSpriteGroup<Bracket>;
-    private var bracketRegister:BracketManager;
-    private var lineRegister:LineManager;
-    public function new(items:Int)
+    
+    public static function generateShuffledItems(items:Int):Array<Int>
     {
-        super();
-        _ItemList = [];
-        //brackets = new FlxTypedSpriteGroup<Bracket>();
-        bracketRegister = new BracketManager();
-        lineRegister = new LineManager();
         var random = new FlxRandom();
         var shuffled_items = [for (i in 0...items) i];
         random.shuffle(shuffled_items);
-        data = shuffled_items;
-        for (i in 0...shuffled_items.length)
+        return shuffled_items;        
+    }
+    
+    
+    public function new(items:Array<Int>)
+    {
+        super();
+        itemList = [];
+        
+        bracketManager = new BracketManager();
+        lineManager = new LineManager();
+        
+        data = items;
+
+
+        for (i in 0...items.length)
         {
-            var val = shuffled_items.length - shuffled_items[i];
-            var height = Std.int(val/ items * ItemImpl.MAX_HEIGHT);
+            var val = items.length - items[i];
+            var height = Std.int(val / items.length * ItemImpl.MAX_HEIGHT);
             var item = new ItemImpl(height, val);
             item.setColorIdle();
+            
             add(item);
             
-            _ItemList[i] = item;
-            item.x = calculateX(i);
+            itemList[i] = item;
+            item.x = calculateX(i);            
         }
-        //trace(bracketRegister.height, bracketRegister.width);
-        bracketRegister.y = height;
+       
+        bracketManager.y = height;
         
-        add(bracketRegister);
-        add(lineRegister);
+        add(bracketManager);
+        add(lineManager);
         
     }
 
@@ -55,6 +66,11 @@ class ItemList extends FlxSpriteGroup
     {
         return Std.int(ItemImpl.ITEM_WIDTH * index * 2 + this.x);
     }
+    public function getItems():Array<ItemImpl>
+    {
+        return itemList;
+    }
+    
     
     public static function calculateXwithoutThisX(index:Int):Int
     {
@@ -81,13 +97,13 @@ class ItemList extends FlxSpriteGroup
     {
         var bracket = new Bracket(span);
         bracket.alpha = 0.000000001;
-        bracketRegister.register(where, height, bracket);
+        bracketManager.register(where, height, bracket);
         bracket.x = calculateX(where);
         return T_SINGLE(FlxTween.num(0, 1, 0.5, {ease:FlxEase.smootherStepInOut}, tweenFunction.bind(bracket)));
     }
     public function removeBracket(where:Int, height:Int):ActionType
     {
-        var bracket = bracketRegister.unregister(where, height);
+        var bracket = bracketManager.unregister(where, height);
         //return T_SINGLE(new Wait(0.5));
         return T_SINGLE(FlxTween.num(1, 0, 0.5, {ease:FlxEase.smootherStepInOut}, tweenFunction.bind(bracket)));
     }
@@ -100,7 +116,7 @@ class ItemList extends FlxSpriteGroup
         var line = new Line(ItemImpl.ITEM_WIDTH * data.length * 2 - ItemImpl.ITEM_WIDTH);
         line.y += height;
         line.alpha = 0.000000001;
-        lineRegister.register(height, line);
+        lineManager.register(height, line);
         //return T_SINGLE(new Wait(0.5));
         return T_SINGLE(FlxTween.num(0, 1, 0.5, {ease:FlxEase.smootherStepInOut}, tweenFunction.bind(line)));
     }
@@ -110,7 +126,7 @@ class ItemList extends FlxSpriteGroup
     }
     private function removeLine(height:Int):ActionType
     {
-        var line = lineRegister.unregister(height);
+        var line = lineManager.unregister(height);
         //return T_SINGLE(new Wait(0.5));
         return T_SINGLE(FlxTween.num(1, 0, 0.5, {ease:FlxEase.smootherStepInOut}, tweenFunction.bind(line)));
     }
@@ -148,37 +164,11 @@ class ItemList extends FlxSpriteGroup
     
     public inline function get_lenght()
     {
-        return _ItemList.length;
+        return itemList.length;
     }
 
     public inline function get(i:Int):ItemImpl
     {
-        return _ItemList[i];
-    }
-}
-
-class PythonRange
-{
-    var start:Int;
-    var i:Int;
-    var end:Int;
-
-    public function new(start:Int, _end:Int)
-    {
-        this.start = 0;
-        i = start;
-        this.end = _end;
-
-    }
-    public function hasNext()
-    {
-        return i < end;
-    }
-    public function next()
-    {
-        var old_i = i;
-        i += 1;
-        return old_i;
-
+        return itemList[i];
     }
 }

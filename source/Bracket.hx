@@ -23,8 +23,6 @@ class Bracket extends FlxSpriteGroup
         add(left);
         add(right);
         add(middle); 
-        
-        
     }
     
 }

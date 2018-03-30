@@ -1,57 +1,35 @@
 package;
+import algorithms.SortingAlgorithm;
 import flixel.util.FlxColor;
 
 /**
  * ...
  * @author Andrzej
  */
-class Status 
+class Status
 {
-    
+
     //selected algorithm
-    public static var algorithm:AlgorithmType;
+    public static var activeAlgorithm:String;
     //
+    
+    //based on this values, the DrawArea with items is generated.
+    //set in main and when new algorithm is loaded
+    public static var preloadedItems:Array<Int>;
     
     //colors
-    public static var pickColor:FlxColor;
-    public static var pickColorSecondary:FlxColor;
-    public static var pickColorTertiary:FlxColor;
-    public static var idleColor:FlxColor;
+    public static var pickColor:FlxColor = Color.Turquoise;
+    public static var pickColorSecondary:FlxColor = Color.GreenJungle;
+    public static var pickColorTertiary:FlxColor = Color.Purple;
+    public static var idleColor:FlxColor = Color.Black;
+
+    public static var doneColor:FlxColor = Color.White;
+    public static var backgroundColor:FlxColor = Color.PinkCrimson;
+
+    public static var idleCodeColor:FlxColor = Status.backgroundColor;
+    public static var pickCodeColor:FlxColor = Status.pickColor;
     
-    public static var doneColor:FlxColor;
-    public static var backgroundColor:FlxColor;
-    
-    public static var idleCodeColor:FlxColor;
-    public static var pickCodeColor:FlxColor;
     //
-    
 
-    public static function setAlgorithm(alg:AlgorithmType)
-    {
-        Status.algorithm = alg;
-        Status.pickColor = Color.Turquoise;
-        Status.pickColorSecondary = Color.GreenJungle;
-        Status.pickColorTertiary= Color.Purple;
-        Status.idleColor = Color.Black;
-        Status.backgroundColor = Color.PinkCrimson;
-        Status.doneColor = Color.White;
 
-        Status.idleCodeColor = Status.backgroundColor;
-        Status.pickCodeColor = Status.pickColor;
-        ItemImpl.ITEM_WIDTH = 16;
-        switch (alg)
-        {
-            case BubbleSort:
-                //Status.pickColor = Color.Black;
-                //Status.pickColorSecondary = Color.GreenJungle;
-                //Status.idleColor = Color.Turquoise;
-                //Status.backgroundColor = Color.PinkCrimson;
-                //Status.doneColor = Color.PinkRed;                
-            case InsertionSort:
-            case MergeSort:
-                ItemImpl.ITEM_WIDTH = 16;
-            case QuickSort:
-        }
-    }
-    
 }

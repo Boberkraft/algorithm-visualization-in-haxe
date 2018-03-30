@@ -1,16 +1,26 @@
 package;
 
+import algorithms.BubbleSort;
+import algorithms.MergeSort;
+import algorithms.QuickSort;
 import flixel.FlxGame;
 import openfl.display.Sprite;
-import AlgorithmType;
+
+#if js
 import js.AlgorithmChanger;
+#end
 
 class Main extends Sprite
 {
 	public function new()
 	{
 		super();
-        Status.setAlgorithm(AlgorithmType.QuickSort);
+        #if js
+        AlgorithmChanger; // reference it just to keep and generate code for js. idk how to fix it.
+        #end
+        Status.activeAlgorithm = 'QuickSort';
+        
+        Status.preloadedItems = null;
 		addChild(new FlxGame(0, 0, PlayState, 1, 60, 60, true, false));
 	}
 }

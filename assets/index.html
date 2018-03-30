@@ -112,31 +112,8 @@
             <h2 class="subtitle">
                 Aktualnie leci sortowanie <strong id="algoName">bąbelkowe</strong>
             </h2>
-            <div class="tile is-ancestor noselect">
-                <div class="tile is-parent " >
-                    <article class="tile is-child box algorithmType" onclick="changeAlgo(AlgorithmTypeJS.BubbleSort, 'bombelkowe')">
-                        <p class="title">Bąbelkowe</p>
-                        <p class="subtitle">Bubble sort</p>
-                    </article>
-                </div>
-                <div class="tile is-parent " >
-                    <article class="tile is-child box algorithmType" onclick="changeAlgo(AlgorithmTypeJS.InsertionSort, 'poprzez wstawianie')">
-                        <p class="title">Poprzez wstawianie</p>
-                        <p class="subtitle">Insertion sort</p>
-                    </article>
-                </div>
-                <div class="tile is-parent " >
-                    <article class="tile is-child box algorithmType" onclick="changeAlgo(AlgorithmTypeJS.MergeSort, 'poprzez scalanie')">
-                        <p class="title">Poprzez scalanie</p>
-                        <p class="subtitle">Merge sort</p>
-                    </article>
-                </div>
-                <div class="tile is-parent " >
-                    <article class="tile is-child box algorithmType" onclick="changeAlgo(AlgorithmTypeJS.QuickSort, 'szybkie')">
-                        <p class="title">Szybkie</p>
-                        <p class="subtitle">Quick sort</p>
-                    </article>
-                </div>
+            <div class="tile is-ancestor noselect" id="algList">
+                
             </div>
             <div id="openfl-content"></div>
         </div>
@@ -166,7 +143,26 @@
             js.AlgorithmChanger.load(type);
             document.getElementById('algoName').innerHTML = algoName;
         }
+        var algorithms = AlgorithmFactory.availivable;
+        
+        var spaceToAppend = document.getElementById('algList');
+        algorithms.forEach(function(entry) {
+            console.log(entry);
+            var algClass = AlgorithmFactory.getAlgorithmClass(entry);
+            var ins = new algClass();
+            spaceToAppend.insertAdjacentHTML('beforeend', 
+            `<div class="tile is-parent " >
+                <article class="tile is-child box algorithmType" onclick="changeAlgo('${entry}', '${ins.description.h['polishName']}')">
+                    <p class="title">${ins.description.h['polishName']}</p>
+                    <p class="subtitle">${ins.description.h['englishName']}</p>
+                </article>
+            </div>`
+            );
+        });
 	</script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+
+    </script>
 </body>
 </html>
