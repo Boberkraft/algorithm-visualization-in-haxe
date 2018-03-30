@@ -10,7 +10,12 @@ import openfl.display.Sprite;
 #if js
 import js.AlgorithmChanger;
 #end
-
+/**
+ * ...
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
+ */
 class Main extends Sprite
 {
 	public function new()

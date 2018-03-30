@@ -7,7 +7,9 @@ import js.Browser.window;
 
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 @:keep
 @:expose

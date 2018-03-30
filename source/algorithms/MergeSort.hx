@@ -1,9 +1,12 @@
 package algorithms;
 
 import flixel.util.FlxColor;
+
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 @:expose
 class MergeSort extends SortingAlgorithm

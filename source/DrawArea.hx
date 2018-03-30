@@ -9,9 +9,12 @@ import flixel.util.FlxColor;
 import flixel.math.FlxRandom;
 import flixel.group.FlxSpriteGroup;
 import ActionType;
+
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class DrawArea extends FlxSpriteGroup
 {
@@ -41,7 +44,6 @@ class DrawArea extends FlxSpriteGroup
         
         data = items;
 
-        trace(items);
         for (i in 0...items.length)
         {
             var val = items[i];
@@ -54,7 +56,6 @@ class DrawArea extends FlxSpriteGroup
             itemList.push(item);
             item.x = calculateX(i);            
         }
-        trace([for (item in itemList) item.value]);
         bracketManager.y = height;
         
         add(bracketManager);

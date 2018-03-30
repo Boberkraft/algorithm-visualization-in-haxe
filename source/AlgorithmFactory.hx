@@ -12,7 +12,9 @@ import algorithms.*;
 using StringTools;
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 @:keep
 @:expose

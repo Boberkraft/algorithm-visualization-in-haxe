@@ -5,7 +5,9 @@ import flixel.text.FlxText;
 
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class CodeMenu extends FlxSpriteGroup
 {

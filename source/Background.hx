@@ -1,11 +1,13 @@
 package;
 
 import flixel.FlxSprite;
-import flixel.FlxG
-;
+import flixel.FlxG;
+
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class Background extends FlxSprite
 {

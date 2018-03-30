@@ -4,11 +4,12 @@ import algorithms.InsertionSort;
 import algorithms.MergeSort;
 import algorithms.QuickSort;
 
-
 /**
- * @author Andrzej
+ * ...
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
-
 enum _AlgorithmTypes 
 {
     BubbleSort;

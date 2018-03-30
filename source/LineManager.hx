@@ -4,7 +4,9 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class LineManager extends FlxTypedSpriteGroup<Line>
 {

@@ -3,9 +3,12 @@ package;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
+
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class Bracket extends FlxSpriteGroup 
 {

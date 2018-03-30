@@ -11,6 +11,12 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
 
+/**
+ * ...
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
+ */
 
 class PlayState extends FlxState
 {
@@ -43,10 +49,7 @@ class PlayState extends FlxState
             trace('generating random set of items');
             Status.preloadedItems = DrawArea.generateShuffledItems(Status.howManyItems);
         }
-        trace('loaded items are:');
-        trace(Status.preloadedItems);
         drawArea = new DrawArea(Status.preloadedItems);
-        trace([for (item in drawArea.getItems()) item.value]);
         drawArea.x = Std.int(drawArea.width/16);
         drawArea.y = FlxG.height / 2 - drawArea.height / 2;
         

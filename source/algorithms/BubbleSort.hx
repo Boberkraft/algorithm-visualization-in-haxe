@@ -2,9 +2,10 @@ package algorithms;
 
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
-
 @:expose
 class BubbleSort extends SortingAlgorithm
 {

@@ -3,7 +3,9 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /**
  * ...
- * @author Andrzej
+ * @author Andrzej Bisewski
+ * @email andrzej.bisewski@gmail.com
+ * @github https://github.com/Boberkraft
  */
 class BracketManager extends FlxTypedSpriteGroup<Bracket>
 {

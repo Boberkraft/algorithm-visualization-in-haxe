@@ -2,13 +2,13 @@ package algorithms;
 
 import flixel.FlxG;
 import AlgorithmQueue;
+
 /**
  * ...
  * @author Andrzej Bisewski
  * @email andrzej.bisewski@gmail.com
  * @github https://github.com/Boberkraft
  */
-
 class BogoSort extends SortingAlgorithm
 {
 
