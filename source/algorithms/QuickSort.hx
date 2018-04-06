@@ -31,6 +31,7 @@ class QuickSort extends SortingAlgorithm
                  '    Zamień(DoZamiany, Odniesienie)', //14
                  '    zwróć Odniesienie'];  //15;
         description['englishName'] = 'Quick Sort';
+        description['polishName'] = 'Szybkie';
        
        
         init();

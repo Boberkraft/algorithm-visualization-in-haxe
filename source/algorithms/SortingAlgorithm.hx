@@ -57,6 +57,8 @@ class SortingAlgorithm
     public function preInit()
     {
         Status.howManyItems = 16;
+        //TODO: super.preInit()
+        Status.preloadedItems = null;
     }
     
     public function generateActions():ActionQueue

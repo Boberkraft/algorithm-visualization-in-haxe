@@ -30,7 +30,7 @@ class SelectionSort extends SortingAlgorithm
                 '    zamień(element, minimum))', //5
         ];
         description['englishName'] = 'Selection Sort';
-        description['polishName'] = 'Poprzez wstawianie';
+        description['polishName'] = 'Poprzez wybieranie';
         
         init();
     }

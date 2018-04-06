@@ -24,7 +24,7 @@ class Main extends Sprite
         #if js
         AlgorithmChanger; // reference it just to keep and generate code for js. idk how to fix it.
         #end
-        Status.activeAlgorithm = 'BogoSort';
+        Status.activeAlgorithm = 'HanoiTower';
         
         Status.preloadedItems = null;
 		addChild(new FlxGame(0, 0, PlayState, 1, 60, 60, true, false));

@@ -20,6 +20,7 @@ class BubbleSort extends SortingAlgorithm
         '            zamień(lewyElement, prawyElement)']; //3
         //
         description['englishName'] = 'Bubble Sort';
+        description['polishName'] = 'Bąbelkowe';
         //
         description['implementation'] =
             "def buble(data):

@@ -29,8 +29,8 @@ class BogoSort extends SortingAlgorithm
         */
         super(itemInterface, codeMenuInterface);
         code = [
-            'Do póki nie jest posortowane:',
-            '    Wymieszaj(tablica)'
+            'Do póki nie jest posortowane:', //0
+            '    Wymieszaj(tablica)' //1
         ];
         description['englishName'] = 'BogoSort';
         description['polishName'] = 'BogoSort';
@@ -39,7 +39,8 @@ class BogoSort extends SortingAlgorithm
     }
     override public function preInit()
     {
-        Status.howManyItems = 16;
+        Status.howManyItems = 5;
+        
     }
     function isSorted():Bool
     {
@@ -57,6 +58,7 @@ class BogoSort extends SortingAlgorithm
     {
         
         queue.push(function () {
+            codeMenu.hilightLine(1);
             return T_SINGLE(ActionQueue.wait(S_MoveItem));
         });
         
@@ -80,9 +82,19 @@ class BogoSort extends SortingAlgorithm
                 Status.loadAlgorithm(Status.activeAlgorithm);
                 return T_SINGLE(ActionQueue.wait(0.1));
             });
+            Status.preloadedItems = [for (el in data) el.value];
+        }
+        else 
+        {
+            queue.push(function () {
+                for (i in 0...data.length) {
+                    drawArea.setColorForItem(data[i], Status.doneColor, S_SetColor);
+                }
+                return T_SINGLE(ActionQueue.wait(S_MoveItem));
+            });
         }
         
-        Status.preloadedItems = [for (el in data) el.value];
+        
     }
 
 }

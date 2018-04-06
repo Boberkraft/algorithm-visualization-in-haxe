@@ -20,6 +20,7 @@ class InsertionSort extends SortingAlgorithm
                 '        element = lewyElement']; // 3;
 
         description['englishName']  = 'Insertion Sort';
+        description['polishName'] = 'Poprzez wstawianie';
 
         
             //just for inspection!

@@ -1,6 +1,8 @@
 package;
 
 import flash.display.InterpolationMethod;
+import flixel.FlxObject;
+import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
@@ -9,6 +11,7 @@ import flixel.util.FlxColor;
 import flixel.math.FlxRandom;
 import flixel.group.FlxSpriteGroup;
 import ActionType;
+import flixel.FlxG;
 
 /**
  * ...
@@ -25,6 +28,7 @@ class DrawArea extends FlxSpriteGroup
     public var data:Array<Int>;
     public var lenght(get, null):Int;
     
+    private var subsystems:Array<FlxSpriteGroup>;
     public static function generateShuffledItems(items:Int):Array<Int>
     {
         var random = new FlxRandom();
@@ -38,7 +42,7 @@ class DrawArea extends FlxSpriteGroup
     {
         super();
         itemList = [];
-        
+        subsystems = [];
         bracketManager = new BracketManager();
         lineManager = new LineManager();
         
@@ -62,7 +66,12 @@ class DrawArea extends FlxSpriteGroup
         add(lineManager);
         
     }
-
+    public function addSubSystem(system:FlxSpriteGroup)
+    {
+        trace('Adding a subSystem');
+        add(system);
+        subsystems.push(system);
+    }
     private function calculateX(index:Int):Int
     {
         return Std.int(ItemImpl.ITEM_WIDTH * index * 2 + this.x);
@@ -171,5 +180,22 @@ class DrawArea extends FlxSpriteGroup
     public inline function get(i:Int):ItemImpl
     {
         return itemList[i];
+    }
+    
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+        if (FlxG.keys.pressed.DOWN) {
+            this.y += 1;
+        }
+        if (FlxG.keys.pressed.UP) {
+            this.y -= 1;
+        }
+        if (FlxG.keys.pressed.LEFT) {
+            this.x -= 1;
+        }
+        if (FlxG.keys.pressed.RIGHT) {
+            this.x += 1;
+        }
     }
 }

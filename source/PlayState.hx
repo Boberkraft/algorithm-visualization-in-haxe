@@ -44,20 +44,17 @@ class PlayState extends FlxState
         add(new GlobalTimer());
         
         //list of items
+        var items:Array<Int>;
         if (Status.preloadedItems == null) {
             // load standard random items
             trace('generating random set of items');
-            Status.preloadedItems = DrawArea.generateShuffledItems(Status.howManyItems);
+            items  = DrawArea.generateShuffledItems(Status.howManyItems);
         }
-        drawArea = new DrawArea(Status.preloadedItems);
-        drawArea.x = Std.int(drawArea.width/16);
-        drawArea.y = FlxG.height / 2 - drawArea.height / 2;
-        
-        if ( Status.activeAlgorithm == 'MergeSort') {
-            drawArea.y /= 2; 
+        else {
+            items = Status.preloadedItems;
         }
-        add(drawArea);
-        
+
+        drawArea = new DrawArea(items);
         codeMenu = new CodeMenu();
 
         add(codeMenu);
@@ -71,9 +68,20 @@ class PlayState extends FlxState
         var algo = Type.createInstance(algClass, [drawArea, codeMenu]);
         
         codeMenu.y = FlxG.height / 2 - codeMenu.height / 2;
-        codeMenu.x = Std.int(drawArea.x + drawArea.width + drawArea.width / 16);
+        //codeMenu.x = Std.int(drawArea.x + drawArea.width + drawArea.width / 16);
+        codeMenu.x = Std.int(FlxG.width - codeMenu.width - codeMenu.width/16);
         
+        trace('width', drawArea.width);
         var actionQueue:ActionQueue = algo.generateActions();
+                
+        drawArea.x = Std.int(drawArea.width/16);
+        drawArea.y = FlxG.height / 2 - drawArea.height / 2;
+        
+        if ( Status.activeAlgorithm == 'MergeSort') {
+            drawArea.y /= 2; 
+        }
+        add(drawArea);
+        drawArea.x = (FlxG.width - codeMenu.width) / 2 - drawArea.width / 2;
         add(actionQueue); // 
         actionQueue.start();
     }
@@ -90,5 +98,11 @@ class PlayState extends FlxState
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
+        if (FlxG.keys.pressed.LBRACKET) {
+            Status.howManyItems -= 1;
+        }
+        if (FlxG.keys.pressed.RBRACKET) {
+            Status.howManyItems += 1;
+        }
     }
 }

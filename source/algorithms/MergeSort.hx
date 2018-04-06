@@ -36,6 +36,7 @@ class MergeSort extends SortingAlgorithm
                 '    w innym wypadku:', // 14
                 '        nowaTablica.push(Początek(LewaPołowa))']; // 15;
         description['englishName'] = 'Merge Sort';
+        description['polishName'] = 'Poprzez scalanie';
 
        
             //just for inspection!
