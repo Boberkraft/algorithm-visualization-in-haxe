@@ -112,10 +112,16 @@
             <h2 class="subtitle">
                 Aktualnie leci sortowanie <strong id="algoName">bąbelkowe</strong>
             </h2>
-            <div class="tile is-ancestor noselect" id="algList">
+            <div class="noselect" id="algList">
                 
             </div>
-            <div id="openfl-content"></div>
+            <div class="title is-ancestor">
+                <div class="tile is-parent">
+                    <div class="tile"
+                        <div id="openfl-content"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="section" id="descriptions">
@@ -146,19 +152,40 @@
         var algorithms = AlgorithmFactory.availivable;
         
         var spaceToAppend = document.getElementById('algList');
+        var inLine = 0;
+        var temp = "";
         algorithms.forEach(function(entry) {
+            
             console.log(entry);
             var algClass = AlgorithmFactory.getAlgorithmClass(entry);
             var ins = new algClass();
-            spaceToAppend.insertAdjacentHTML('beforeend', 
-            `<div class="tile is-parent " >
-                <article class="tile is-child box algorithmType" onclick="changeAlgo('${entry}', '${ins.description.h['polishName']}')">
-                    <p class="title">${ins.description.h['polishName']}</p>
-                    <p class="subtitle">${ins.description.h['englishName']}</p>
-                </article>
-            </div>`
+            console.log(inLine);
+            
+            if (inLine % 4 == 0) {
+                temp = temp.concat(
+                    `<div class="tile is-ancestor">`
+                );
+            }
+            
+            temp = temp.concat(
+                `<div class="tile is-parent" >
+                    <article class="tile is-child box algorithmType" onclick="changeAlgo('${entry}', '${ins.description.h['polishName']}')">
+                        <p class="title">${ins.description.h['polishName']}</p>
+                        <p class="subtitle">${ins.description.h['englishName']}</p>
+                    </article>
+                </div>`
             );
+            if (inLine % 4 == 3) {
+                temp = temp.concat(`</div>`);
+            }
+            inLine += 1;
+            
         });
+        if (inLine != 3) {
+            temp = temp.concat(`</div>`);
+        }
+        spaceToAppend.insertAdjacentHTML('beforeend', temp);
+
 	</script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
