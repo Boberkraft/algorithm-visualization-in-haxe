@@ -1,5 +1,7 @@
 # Jak wygląda stronka?
 Można sobie na niej poklikać i takie tam.
+
+
 ![animation of how the site looks](images/site.gif)
 
 
@@ -13,7 +15,7 @@ Można sobie na niej poklikać i takie tam.
 ![animation of Insertionsort](images/insertionsort.gif)
 
 ### Sortowanie poprzez wybieranie / ```SelectionSort```
-![animation of SelectionSort](images/selection sort.gif)
+![animation of SelectionSort](images/selectionsort.gif)
 
 ### Sortowanie szybkie / ```QuickSort```
 ![animation of QuickSort](images/quicksort.gif)
