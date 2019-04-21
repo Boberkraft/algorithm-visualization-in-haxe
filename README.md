@@ -3,13 +3,13 @@ Można sobie na niej poklikać i takie tam.
 ![animation of how the site looks](images/site.gif)
 
 
-### BogoSort
+### Bogosort / ```BogoSort```
 ![animation of BogoSort](images/bogosort.gif)
 
 ### Sortowanie bąbelkowe / ```BubbleSort```
 ![animation of BubbleSort](images/bubblesort.gif)
 
-### Sortowanie poprzez wstawianie / ```Insertionsort```
+### Sortowanie poprzez wstawianie / ```InsertionSort```
 ![animation of Insertionsort](images/insertionsort.gif)
 
 ### Sortowanie poprzez wybieranie / ```SelectionSort```
@@ -21,7 +21,7 @@ Można sobie na niej poklikać i takie tam.
 ### Sortowanie poprzez scalanie / ```MergeSort```
 ![animation of MergeSort](images/mergesort.gif)
 
-### Wieża Hanoi / ```Hanoi Tower```
+### Wieża Hanoi / ```HanoiTower```
 ![animation of Hanoi Tower](images/hanoi.gif)
 
-(Tak. To akurat po polsku.)
+(Tak. To akurat jest po polsku.)
